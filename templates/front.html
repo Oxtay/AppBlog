@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-
-<html>
-    <head>
-		<link type="text/css" rel="stylesheet" href="/static/main.css" />
-        <title>Oxtay Blogger</title>
-    </head>
-	
-    <body>
-		<hr>
-		    {% for post in posts %}
-		    <div class="post">
-		        <div class="post-title">{{post.title}}</div>
-		        <pre class="post-body">{{post.post}}</pre>
-		    </div>
-		    {% endfor %}
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+	{% for blog in blogs %}
+		<div class="post-title">{{blog.subject}}</div>
+		<pre class="post-content">{{blog.content}}</pre>
+	{% endfor %}
+{% endblock %}
