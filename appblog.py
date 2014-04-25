@@ -33,7 +33,8 @@ class Blog(db.Model):
     def render(self):
         self._render_text = self.content.replace('\n', '<br>')
         return render_str("post.html", blog = self)
-    
+
+# Permanent link creater for each blog page    
 class Permalink(Handler):
     def get(self, blog_id):
         s = Blog.get_by_id(int(blog_id))
@@ -57,6 +58,7 @@ class NewPost(Handler):
             error = "we need both a title and some content!"
             self.render_newpost(subject=subject, content=content, error=error)
 
+# First page of the blog, containing all the blog posts, limited to the last 10
 class BlogFront(Handler):
     def render_front(self):
         blogs = db.GqlQuery("select * from Blog ORDER BY created desc limit 10")
